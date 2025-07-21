@@ -83,6 +83,12 @@ jar {
 }
 
 processResources {
+    def mod_description = project.description
+
+    if (project.name == 'fabric') {
+        mod_description = mod_description.replace('\n', '\\n')
+    }
+
     var expandProps = [
             'version'                      : version,
             'group'                        : project.group, //Else we target the task's group.
@@ -97,7 +103,7 @@ processResources {
             'mod_author'                   : mod_author,
             'mod_id'                       : mod_id,
             'license'                      : license,
-            'description'                  : project.description,
+            'description'                  : mod_description,
             'neoforge_version'             : neoforge_version,
             'neoforge_loader_version_range': neoforge_loader_version_range,
             'credits'                      : credits,
